@@ -4,8 +4,11 @@
   "description": "Venue for displaying media content.",
   "main": "server.js",
   "scripts": {
+    "client-install": "npm install --prefix client",
     "start": "node server.js",
-    "server": "nodemon server.js"
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Joshua Scott",
   "license": "MIT",
@@ -18,5 +21,8 @@
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "validator": "^10.4.0"
+  },
+  "devDependencies": {
+    "concurrently": "^3.6.0"
   }
 }
