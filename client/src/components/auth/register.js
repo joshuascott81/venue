@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { registerUser } from "../../actions/authActions";
 
 class Register extends Component {
   constructor() {
@@ -29,12 +31,18 @@ class Register extends Component {
       password2: this.state.password2
     };
 
+    this.props.registerUser(newUser);
+
     console.log(newUser);
   }
 
   render() {
+    console.log(this.props.auth);
+    const { user } = this.props.auth;
+
     return (
       <div className="register">
+        {user ? user.name : null}
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
@@ -96,4 +104,11 @@ class Register extends Component {
   }
 }
 
-export default Register;
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(
+  mapStateToProps,
+  { registerUser }
+)(Register);
